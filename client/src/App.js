@@ -1,18 +1,26 @@
-import React from "react";
-import { Button } from 'semantic-ui-react';
+import React, { useState } from "react";
 import { ApolloProvider } from "@apollo/client";
+import { ToastContainer } from "react-toastify";
 import client from "./config/apollo";
+import Auth from "./pages/Auth";
 
 export default function App() {
+  const [auth, setAuth] = useState(undefined);
+  
   return (
     <ApolloProvider client={client}>
-      <div className="app">
-        <h1>Estamos en App!!</h1>
-        <div>
-          <Button primary>Primary</Button>
-          <Button secondary>Secondary</Button>
-        </div>
-      </div>
+      {!auth ? <Auth /> : <h1>Estas logeado</h1>}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </ApolloProvider>
   );
 }
