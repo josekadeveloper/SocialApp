@@ -1,0 +1,16 @@
+{
+  "name": "socialclone",
+  "version": "0.0.1",
+  "description": "El server de la app socialclone",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./index.js"
+  },
+  "author": "Jose carlos De La Rosa Methvin",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.10.4",
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.7.0"
+  }
+}
