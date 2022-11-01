@@ -16,7 +16,7 @@ function createToken(user, SECRET_KEY, expiresIn) {
 async function register(input) {
     const newUser = input;
     newUser.email = newUser.email.toLowerCase();
-    newUser.username = newUser.email.toLowerCase();
+    newUser.username = newUser.username.toLowerCase();
 
     const { email, username, password } = newUser;
 
