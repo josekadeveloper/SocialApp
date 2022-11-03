@@ -43,7 +43,6 @@ export default function RegisterForm(props) {
                 setShowLogin(true);
             } catch (error) {
                 toast.error(error.message);
-                console.log(error);
             }
         }
     });
