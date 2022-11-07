@@ -8,7 +8,6 @@ export default function Layout() {
         <>
             <Header />
             <Container className="layout">
-                <h1>Menu Layout</h1>
                 <Outlet />
             </Container>
         </>
