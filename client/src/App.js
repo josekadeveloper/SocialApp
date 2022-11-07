@@ -3,9 +3,10 @@ import { ApolloProvider } from "@apollo/client";
 import { ToastContainer } from "react-toastify";
 import client from "./config/apollo";
 import Auth from "./pages/Auth";
-import { getToken } from "./utils/token";
+import { getToken, decodeToken } from "./utils/token";
 import AuthContext from "./context/AuthContext";
-import Home from "./pages/Home";
+import Navigation from "./routes/Navigation";
+import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -16,7 +17,7 @@ export default function App() {
     if (!token) {
       setAuth(null);
     } else {
-      setAuth(token);
+      setAuth(decodeToken(token));
     }
   }, [])
 
@@ -40,18 +41,20 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <AuthContext.Provider value={authData}>
-        {!auth ? <Auth /> : <Home />}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+        <BrowserRouter>
+          {!auth ? <Auth /> : <Navigation />}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </BrowserRouter>
       </AuthContext.Provider>
     </ApolloProvider>
   );
