@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const awsUploadImage = require("../utils/aws-upload-image");
 
 function createToken(user, SECRET_KEY, expiresIn) {
     const { id, name, email, username } = user;
@@ -66,7 +67,9 @@ async function getUser(id, username) {
 }
 
 async function updateAvatar(file) {
-    console.log(file);
+    const { createReadStream, mimetype } = await file;
+    const extension = mimetype.split("/")[1];
+    console.log(extension);
     return null;
 }
 
